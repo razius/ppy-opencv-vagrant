@@ -18,6 +18,17 @@ PKG_DEPENDENCIES=(
 # Enable multiverse.
 sed -i "/^# deb.*multiverse/ s/^# //" /etc/apt/sources.list
 
+if test ! $(which add-apt-repository)
+    then
+    apt-get install -y software-properties-common python-software-properties
+fi
+
+# Add apt repositories
+for repo in "${PPA_REPOSITORIES[@]}"
+do
+    add-apt-repository -y $repo
+done
+
 apt-get update
 apt-get install -y ${PKG_DEPENDENCIES[@]}
 
