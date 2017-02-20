@@ -125,5 +125,8 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   #
   #   chef.validation_client_name = "ORGNAME-validator"
 
+  # use graphical programs
+  config.ssh.forward_x11 = true 
+  
   config.vm.provision "shell", path: "bootstrap.sh"
 end
